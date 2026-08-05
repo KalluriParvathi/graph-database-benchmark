@@ -1,6 +1,8 @@
-# graph-database-benchmark
-Benchmarking CognoDB Cloud against managed graph databases using Python.
 # Graph Database Benchmark
+
+Benchmarking CognoDB Cloud against Neo4j AuraDB using Python.
+
+This project benchmarks graph database performance using the Cit-HepTh citation network. It measures query latency for multiple graph traversal operations and visualizes the results using Python and Matplotlib.
 
 ## Overview
 
@@ -12,6 +14,15 @@ The benchmark compares graph databases using identical workloads and measures qu
 
 - CognoDB
 - Neo4j AuraDB
+
+## Technologies Used
+
+- Python 3
+- Pandas
+- Matplotlib
+- Neo4j AuraDB
+- CognoDB Cloud
+- Docker
 
 ## Dataset
 
@@ -39,13 +50,17 @@ The benchmark compares graph databases using identical workloads and measures qu
 
 ## Project Structure
 
-```
-benchmark/
-dataset/
-results/
-charts/
-README.md
-requirements.txt
+```text
+graph-database-benchmark/
+│
+├── benchmark/
+├── charts/
+├── dataset/
+├── results/
+├── .gitignore
+├── README.md
+├── requirements.txt
+└── main.py
 ```
 
 ## How to Run
@@ -73,6 +88,21 @@ Generate charts:
 ```bash
 python -m benchmark.charts
 ```
+Generate charts:
+
+```bash
+python -m benchmark.charts
+```
+## Installation
+
+Clone the repository
+
+```bash
+git clone https://github.com/KalluriParvathi/graph-database-benchmark.git
+cd graph-database-benchmark
+pip install -r requirements.txt
+```
+
 
 ## Output
 
@@ -90,3 +120,5 @@ python -m benchmark.charts
 ### Database Comparison
 
 ![Comparison](charts/comparison.png)
+### Average Query Latency
+
