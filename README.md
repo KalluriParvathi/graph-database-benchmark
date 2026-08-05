@@ -80,3 +80,13 @@ python -m benchmark.charts
 - results/comparison.csv
 - charts/average_latency.png
 - charts/comparison.png
+
+## Benchmark Charts
+
+### Average Query Latency
+
+![Average Latency](charts/average_latency.png)
+
+### Database Comparison
+
+![Comparison](charts/comparison.png)
