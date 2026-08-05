@@ -4,9 +4,10 @@ import os
 
 load_dotenv()
 
-URI = os.getenv("COGNODB_URI")
-USER = os.getenv("COGNODB_USER")
-PASSWORD = os.getenv("COGNODB_PASSWORD")
+URI = os.getenv("NEO4J_URI")
+USER = os.getenv("NEO4J_USERNAME")
+PASSWORD = os.getenv("NEO4J_PASSWORD")
+DATABASE = os.getenv("NEO4J_DATABASE")
 
 driver = GraphDatabase.driver(
     URI,
@@ -27,7 +28,6 @@ def insert_batch(tx, batch):
 def load_dataset():
 
     batch = []
-
     total = 0
 
     with open("dataset/Cit-HepTh.txt", "r") as file:
@@ -46,17 +46,17 @@ def load_dataset():
 
             if len(batch) == 1000:
 
-                with driver.session() as session:
+                with driver.session(database=DATABASE) as session:
                     session.execute_write(insert_batch, batch)
 
                 total += len(batch)
-
                 print(f"{total} relationships loaded...")
 
                 batch = []
 
         if batch:
-            with driver.session() as session:
+
+            with driver.session(database=DATABASE) as session:
                 session.execute_write(insert_batch, batch)
 
             total += len(batch)
@@ -67,6 +67,7 @@ def load_dataset():
 
 
 if __name__ == "__main__":
-    load_dataset()
-
-driver.close()
+    try:
+        load_dataset()
+    finally:
+        driver.close()
